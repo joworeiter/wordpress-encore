@@ -54,6 +54,13 @@ class Bootstrap
     {
         $this->encore->enqueue('app', 'main', []);
     }
+
+    
+    public function enqueue_assets_async()
+    {
+         //WP 6.3 introduced the possibility to add loading strategies, if the "in_footer" key get passend an array
+         $this->encore->enqueue('some-js', 'some-handle', ['in_footer' => ['in_footer' => true, 'strategy'  => 'async'] ] );
+    }    
 }
 ```
 
