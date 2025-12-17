@@ -136,7 +136,7 @@ class Encore
 
         $entrypoints = $this->getEntrypoint($name);
         if (!isset($entrypoints['entrypoints'][$entryPoint])) {
-            throw new \LogicException('No entry point found in the entrypoint.js');
+            throw new \LogicException('EntryPoint: ' . $entryPoint . ' not found in entrypoint.json.' . PHP_EOL .' Available entry points are: ' . implode(', ', array_keys($entrypoints['entrypoints'])));;
         }
 
         $enqueue = $entrypoints['entrypoints'][$entryPoint];
@@ -222,7 +222,7 @@ class Encore
             return $this->entryPointCache[$this->outputPath][$dir];
         }
 
-        $filepath = $this->rootPath . '/entrypoints.json';
+        $filepath = trailingslashit($this->rootPath) . 'entrypoints.json';
 
         if (!file_exists($filepath)) {
             throw new \LogicException(sprintf('Entrypoint %s does not exist.', $filepath));
