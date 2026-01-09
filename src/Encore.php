@@ -136,7 +136,12 @@ class Encore
 
         $entrypoints = $this->getEntrypoint($name);
         if (!isset($entrypoints['entrypoints'][$entryPoint])) {
-            throw new \LogicException('EntryPoint: ' . $entryPoint . ' not found in entrypoint.json.' . PHP_EOL .' Available entry points are: ' . implode(', ', array_keys($entrypoints['entrypoints'])));;
+            throw new \LogicException(
+                'EntryPoint: ' . $entryPoint . ' not found in entrypoint.json. ' . \PHP_EOL .
+                'Available entry points are: ' . implode(', ', array_keys(
+                    $entrypoints['entrypoints']
+                ))
+            );
         }
 
         $enqueue = $entrypoints['entrypoints'][$entryPoint];
